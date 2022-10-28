@@ -23,7 +23,7 @@ public:
                  else
                      stack.pop();
             }
-            else if (s[i] == '(' || s[i] == '[' || s[i] == '{'){
+            else{
                 stack.push(s[i]);
             }
         }
