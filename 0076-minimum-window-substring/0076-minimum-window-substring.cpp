@@ -30,9 +30,7 @@ public:
                 map2[s[i]]--;
                 if(map1.find(s[i]) != map1.end())
                     count--;
-                i++;
-               
-                
+                i++; 
 }
             j++;
         }
