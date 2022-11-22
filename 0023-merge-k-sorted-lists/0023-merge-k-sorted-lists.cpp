@@ -10,77 +10,33 @@
  */
 class Solution {
 public:
-    ListNode* merge(ListNode* list1, ListNode* list2){
-        ListNode* temp1 = list1;
-        int size1 = 0, size2 = 0;
-        ListNode* temp2 = list2;
-        while(temp1 != NULL){
-            size1++;
-            temp1 = temp1 -> next;
-        }
-        while(temp2 != NULL){
-            size2++;
-            temp2 = temp2 -> next;
-        }
-        if(size1 == 0 && size2 == 0)
-            return NULL;
-        if(size1 == 0)
-            return list2;
-        if(size2 == 0)
-            return list1;
-        int size = size1 + size2;
-        ListNode* head = new ListNode();
-        if(list1 -> val <= list2 -> val){
-            head -> val = list1 -> val;
-            head -> next = NULL;
-            list1 = list1 -> next;
-            size1--;
-}
-        else{
-            head -> val = list2 -> val;
-            head -> next = NULL;
-            list2 = list2 -> next;
-            size2--;
-        }
-        ListNode* temp = head;
-        while(list1 != NULL && list2 != NULL){
-            if(list1-> val <= list2 -> val){
-                temp -> next = list1;
-                temp = temp -> next;
-                list1 = list1 -> next;
-                size1--;
-        }
-            else if (list1 -> val > list2 -> val){   
-                   temp -> next = list2;
-                   temp = temp -> next;
-                   list2 = list2 -> next;
-                   size2--;
-        }
-        }
-          while(size1 > 0){
-                temp -> next = list1;
-                temp = temp -> next;
-                list1 = list1 -> next;
-                size1--;
-            }
-            while(size2 > 0){
-                temp -> next = list2;
-                temp = temp -> next;
-                list2 = list2 -> next;
-                size2--;
-            }
-            temp -> next = NULL;
-        return head;
+    void it(ListNode* &t,int v){
+        ListNode* s=new ListNode(v);
+        t->next=s;
+        t=t->next;
     }
-    ListNode* mergeKLists(vector<ListNode*>& lists) {
-       int k = lists.size();
-        if(k == 0)
+    ListNode* mergeKLists(vector<ListNode*>& l) {
+        vector<int>v;
+        if(l.size()==0){//base case
             return NULL;
-        while(lists.size() != 1){
-            lists[0] = merge(lists[0], lists[1]);
-            lists.erase(lists.begin() + 1);
+        }
+        for(int p=0;p<l.size();p++){
+            ListNode* a=l[p];
+            while(a){
+                v.push_back(a->val);
+                a=a->next;
             }
-        return lists[0];
+        }
+        if(v.size()==0){
+            return NULL;
+        }
+        sort(v.begin(),v.end());
+		//sorted vector
+        ListNode* s=new ListNode(v[0]);
+        ListNode* t=s;
+        for(int p=1;p<v.size();p++){
+            it(t,v[p]);//adding to tail
+        }
+        return s;
     }
-
 };
