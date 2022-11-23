@@ -28,8 +28,6 @@ public:
             return true;
         if(root == NULL)
             return false;
-            
         return isSubtree(root -> left, subRoot) || isSubtree(root -> right, subRoot);
-        return false;
     }
 };
