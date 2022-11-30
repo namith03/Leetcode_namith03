@@ -29,7 +29,7 @@ public:
             q.pop();
             count--;
             if(count == 0){
-                result.emplace_back(levels);
+                result.push_back(levels);
                 levels.clear();
                 count = q.size();
             }
