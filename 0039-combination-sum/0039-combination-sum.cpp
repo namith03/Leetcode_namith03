@@ -17,9 +17,9 @@ public:
         if(i >= candidates.size())
             return ;
         
-        helper(candidates, target, temp, i+1);
         temp.push_back(candidates[i]);
         helper(candidates, target - candidates[i],temp,i);
         temp.pop_back();
+        helper(candidates, target, temp, i+1);
     }
 };
