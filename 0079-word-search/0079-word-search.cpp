@@ -22,12 +22,13 @@ public:
         board[i][j] = '!';
         if(i > 0 && helper(board,word, idx+1, i-1, j))
            result = true;
-        if(i < board.size() - 1  && helper(board,word, idx+1, i+1, j))
+        if(!result && i < board.size() - 1  && helper(board,word, idx+1, i+1, j))
            result = true;
-        if(j > 0 && helper(board,word,idx+1, i, j -1))
+        if(!result && j > 0 && helper(board,word,idx+1, i, j -1))
            result = true;
-        if(j < board[0].size() - 1 && helper(board, word, idx+1, i, j+1))
+        if(!result && j < board[0].size() - 1 && helper(board, word, idx+1, i, j+1))
            result = true;
+        
         board[i][j] = ch;
         return result;
     }
