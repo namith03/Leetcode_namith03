@@ -1,6 +1,6 @@
 class Solution {
 public:
-    bool cyclic(int i, vector<int> adj[], int visited[], int stack[] ){
+    bool cyclic(int i, vector<int> *adj, int *visited, int *stack ){
         visited[i] = 1;
         stack[i] = 1;
         for(auto nbr:adj[i]){
