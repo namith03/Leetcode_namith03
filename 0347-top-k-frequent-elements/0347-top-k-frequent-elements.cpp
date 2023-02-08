@@ -13,7 +13,7 @@ public:
             if(result.size() >= k)
                 break;
             if(!freq[i].empty()){
-                result.insert(result.end(), freq[i].begin(), freq[i].end());
+                result.insert(result.begin(),freq[i].begin(),freq[i].end());
             }
 }
         return result;
