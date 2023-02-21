@@ -27,9 +27,13 @@ public:
         while(count != 1){
             temp = temp -> next;
             count--;
-}
+}       
+        ListNode* fut = temp -> next;
         temp -> next = temp -> next -> next;
+        delete fut;
         }
         return head;
+
     }
+    
 };
