@@ -6,7 +6,6 @@ public:
         int result = 0;
         for(int i = 0; i < n; i++){
             dp[i][i] = true;
-            cout << i << endl;
             result++;
         }
         
@@ -17,12 +16,10 @@ public:
                 if(s[i] == s[j]){
                     if((j-i) == 1){
                         dp[i][j] = true;
-                        cout << i << j << endl;
                         result++;
                     }
                 if(dp[i+1][j-1] == true){
                     dp[i][j] = true;
-                    cout << i << j << endl;
                     result++;
                 }
             }
