@@ -11,20 +11,22 @@ public:
             int i = 0;
             int j = window;
             while(j < n){
-                if(j-i == 1 && s[i] == s[j]){
-                    dp[i][j] = true;
-                    start = i;
-                    max_len = 2;
-                }
-                if(s[i] == s[j] && dp[i+1][j-1] == true){
-                    dp[i][j] = true;
-                    start = i;
-                    max_len = j - i + 1;
-                }
+                if(s[i] == s[j]){
+                    if(j-i == 1){
+                        dp[i][j] = true;
+                        start = i;
+                        max_len = 2;
+                    }
+                    else if(dp[i+1][j-1] == true){
+                        dp[i][j] = true;
+                        start = i;
+                        max_len = j - i + 1;
+                    }
+    }
                 i++;
                 j++;
-}
             
+        }
         }
         return s.substr(start,max_len);
         
