@@ -9,8 +9,7 @@ public:
             for(int j = 0; j < i ; j++){
                 if(nums[j] < nums[i])
                     dp[i] = max(dp[i],1 + dp[j]);
-                if(nums[i] == nums[j])
-                    dp[i] = dp[j];
+              
             }
         }
         int result = 0;
