@@ -1,19 +1,18 @@
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
-        int prev = INT_MIN;
-        int n = nums.size();
-        vector<int> dp(n,1);
-        dp[0] = 1;
+        vector<int> sub;
+        sub.push_back(nums[0]);
         for(int i = 1; i < nums.size(); i++){
-            for(int j = 0; j < i ; j++){
-                if(nums[j] < nums[i])
-                    dp[i] = max(dp[i],1 + dp[j]);
+            if(sub[sub.size() - 1] < nums[i])
+                sub.push_back(nums[i]);
+            else{
+                //this command finds the element in sub just greater than nums[i]
+                //usually we do binary search for this but this command does the same
+                    auto iter = lower_bound(sub.begin(), sub.end(),nums[i]);
+                    *iter = nums[i];         
+                }
             }
-        }
-        int result = 0;
-        for(int i = 0; i < n; i++)
-            result = max(result,dp[i]);
-        return result;
+        return sub.size();
     }
 };
