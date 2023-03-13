@@ -4,28 +4,24 @@ public:
         int n = nums.size();
         int i = 0;
         while(i < n){
-            int jmp = nums[i];
-            if(i == n-1)
+            if(i == n-1 || i + nums[i] >= n - 1)
                 return true;
-            if(jmp == 0)
+            if(nums[i] == 0)
                 return false;
-            if(i + jmp >= n - 1)
-                return true;
-            if(jmp == 1){
+            if(nums[i] == 1){
                 i++;
                 continue;
             }
             int j = 1;
             int maxm = 1;
             int k = j;
-            while(j <= jmp){
+            while(j <= nums[i]){
                 if(j + nums[i+j] > maxm)
                     k = j;
                 maxm = max(min(n-1,maxm), j + nums[i+j]);
                 j++;
             }
             i = i + k;
-            cout << i << endl;
         }
         return false;
     }
