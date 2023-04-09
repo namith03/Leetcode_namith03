@@ -11,24 +11,19 @@
  */
 class Solution {
 public:
+    vector<int> inorder;
+    void helper(TreeNode* root){
+        if(root == NULL)
+            return ;
+        helper(root -> left);
+        inorder.push_back(root-> val);
+        helper(root->right);
+    }
     bool isValidBST(TreeNode* root) {
-        long long int prev = LLONG_MIN;
-        long long int curr;
-        stack<TreeNode*> st;
-        TreeNode* node = new TreeNode();
-        while( root != NULL || !st.empty()){
-            while(root != NULL){
-                st.push(root);
-                root = root -> left;
-            }
-            node = st.top();
-            st.pop();
-            curr = node -> val;
-            cout << curr << endl;
-            if(curr <= prev)
+        helper(root);
+        for(int i = 0; i < inorder.size() - 1; i++){
+            if(inorder[i] >= inorder[i+1])
                 return false;
-            prev = curr;
-            root = node -> right;
         }
         return true;
     }
