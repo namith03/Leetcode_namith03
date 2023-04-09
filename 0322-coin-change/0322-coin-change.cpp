@@ -2,7 +2,6 @@ class Solution {
 public:
     int coinChange(vector<int>& coins, int amount) {
         vector<int> dp(amount+1, 0);
-        //sort(coins.begin(), coins.end());
         for(int i = 1; i <= amount; i++){
             int minm = amount+1;
             for(int j = 0; j < coins.size(); j++){
