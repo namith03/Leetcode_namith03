@@ -11,23 +11,18 @@
  */
 class Solution {
 public:
+    bool valid(TreeNode* root, long int lower, long int upper){
+        if(root == NULL)
+            return true;
+        else if(lower < root -> val && upper > root -> val)
+            return valid(root->left,lower,root->val) && valid(root->right,root->val,upper);
+        else
+            return false;
+         
+    }
     bool isValidBST(TreeNode* root) {
-        stack<TreeNode*> st;
-        TreeNode* node = new TreeNode();
-        long int prev = LONG_MIN;
-        long int curr = 0;
-        while(root != NULL || !st.empty()){
-            while(root != NULL){
-                st.push(root);
-                root = root -> left;
-            }
-            node = st.top();
-            st.pop();
-            if(node->val <= prev)
-                return false;
-            prev = node -> val;
-            root = node -> right;
-        }
-        return true;
+        long int lower = LONG_MIN;
+        long int upper = LONG_MAX;
+        return valid(root,lower,upper);
     }
 };
