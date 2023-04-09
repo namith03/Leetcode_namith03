@@ -11,19 +11,22 @@
  */
 class Solution {
 public:
-    vector<int> inorder;
-    void helper(TreeNode* root){
-        if(root == NULL)
-            return ;
-        helper(root -> left);
-        inorder.push_back(root-> val);
-        helper(root->right);
-    }
     bool isValidBST(TreeNode* root) {
-        helper(root);
-        for(int i = 0; i < inorder.size() - 1; i++){
-            if(inorder[i] >= inorder[i+1])
+        stack<TreeNode*> st;
+        TreeNode* node = new TreeNode();
+        long int prev = LONG_MIN;
+        long int curr = 0;
+        while(root != NULL || !st.empty()){
+            while(root != NULL){
+                st.push(root);
+                root = root -> left;
+            }
+            node = st.top();
+            st.pop();
+            if(node->val <= prev)
                 return false;
+            prev = node -> val;
+            root = node -> right;
         }
         return true;
     }
