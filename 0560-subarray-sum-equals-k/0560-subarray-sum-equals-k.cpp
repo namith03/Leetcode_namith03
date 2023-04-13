@@ -6,9 +6,8 @@ public:
         map[0] = 1;
         for(int i = 0; i < nums.size(); i++){
             sum = sum + nums[i];
-            if(sum == k || map.find(sum - k) != map.end())
+            if(sum == k || map.find(sum-k) != map.end())
                 count = count + map[sum-k];
-            
             map[sum]++;
         }
         return count;
