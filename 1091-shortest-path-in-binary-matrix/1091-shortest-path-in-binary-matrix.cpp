@@ -19,7 +19,6 @@ public:
                 if(x >= 0 && x < n && y >= 0 && y < n && visited[x][y] == -1 && grid[x][y] == 0){
                     q.push({x,y});
                     visited[x][y] = visited[par[0]][par[1]] + 1;
-                    //cout << x << y << endl;
                 }
             }
 }
