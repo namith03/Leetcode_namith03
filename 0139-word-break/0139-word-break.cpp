@@ -8,11 +8,9 @@ public:
         vector<bool>dp(n+1,false);
         dp[0] = true;
         for(int i = 1; i <= n;i++){
-            int j = 0;
-            while(j != i){
+            for(int j = 0; j <= i-1; j++){
                 if(dp[j] == true && set.find(s.substr(j, i-j)) != set.end())
                     dp[i] = true;
-                j++;
             }
         }
         return dp[n];
